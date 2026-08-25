@@ -1,15 +1,16 @@
-import { useFeedbackStore } from "../store"
+import { useIncBad, useIncGood, useIncNeutral } from "../store"
 
 const Buttons = () => {
-  const incGood = useFeedbackStore(state => state.actions.incGood)
-  const incNeutral = useFeedbackStore(state => state.actions.incNeutral)
-  const incBad = useFeedbackStore(state => state.actions.incBad)
+
+  const handleGood = useIncGood()
+  const handleNeutral = useIncNeutral()
+  const handleBad = useIncBad()
   return (
     <div>
       <h2>give feedback</h2>
-      <button onClick={incGood}>good</button>
-      <button onClick={incNeutral}>neutral</button>
-      <button onClick={incBad}>bad</button>
+      <button onClick={handleGood}>good</button>
+      <button onClick={handleNeutral}>neutral</button>
+      <button onClick={handleBad}>bad</button>
     </div>
   )
 }

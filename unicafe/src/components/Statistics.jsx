@@ -1,9 +1,9 @@
-import { useFeedbackStore } from "../store"
+import { useGood, useNeutral, useBad } from "../store"
 
 const Statistics = () => {
-  const good = useFeedbackStore(state => state.good)
-  const neutral = useFeedbackStore(state => state.neutral)
-  const bad = useFeedbackStore(state => state.bad)
+  const good = useGood()
+  const neutral = useNeutral()
+  const bad = useBad()
   const all = good + neutral + bad
   const average = (good - bad) / all
   const positive = (good / all) * 100
