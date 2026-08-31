@@ -1,5 +1,5 @@
-
 import { create } from 'zustand'
+import { getAll, createNew, updateVote, removeAnecdote } from "./service/anecdoteService"
 
 const anecdotesAtStart = [
   'If it hurts, do it more often',
@@ -19,8 +19,53 @@ const asObject = anecdote => ({
 })
 
 const useAnecdoteStore = create((set) => ({
-  anecdotes: anecdotesAtStart.map(asObject),
-  actions: {},
+  anecdotes: [],
+  filter: "",
+  actions: {
+    incVote: async (anecdote) => {
+      const updatedAnecdote = await updateVote(anecdote, anecdote.id)
+      set(state => ({anecdotes: state.anecdotes.map(a => a.id === anecdote.id ? updatedAnecdote: a)}))
+    },
+    add: async (anecdote) => {
+      const newAnecdote = {
+        content: anecdote,
+        votes: 0
+      }
+      const savedAnecdote = await createNew(newAnecdote)
+      set(state => ({ anecdotes: state.anecdotes.concat(savedAnecdote) }))
+    },
+    remove: async (id) => {
+      const deletedAnecdote = await removeAnecdote(id)
+      set(state => ({ anecdotes: state.anecdotes.filter(a => a.id !== deletedAnecdote.id)}))
+    },
+    setFilter: (value) => set(() => ({ filter: value })),
+    initialize: async () => {
+      const anecdotes = await getAll()
+      set(() => ({ anecdotes }))
+    }
+  },
+}))
+// Need to update this 
+const useNotifyStore = create((set) => ({
+  message: null,
+  setMessage: (notify) => set(() => ({ message: notify }))
 }))
 
-export const useAnecdotes = () => useAnecdoteStore((state) => state.anecdotes)
+
+export const useFilter = () => useAnecdoteStore((state) => state.filter)
+export const useAnecdotes = () => {
+  const anecdotes = useAnecdoteStore(state => state.anecdotes)
+  const filter = useAnecdoteStore(state => state.filter).toLowerCase()
+
+  if (filter !== "") {
+    return anecdotes.filter(anecdote => {
+      const content = anecdote.content.toLowerCase()
+      return content.indexOf(filter) !== -1
+    })
+  }
+
+  return anecdotes
+}
+export const useAnecdoteActions = () => useAnecdoteStore((state) => state.actions)
+export const useNotify = () => useNotifyStore((state) => state.message)
+export const useSetNotify = () => useNotifyStore(state => state.setMessage)
