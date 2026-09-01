@@ -7,10 +7,7 @@ const AnecdoteList = () => {
 
   const vote = async (id) => {
     const anecdote = anecdotes.find(a => a.id === id)
-    await incVote({
-      ...anecdote,
-      votes: anecdote.votes + 1
-    })
+    await incVote(id)
 
     setNotify(`you voted '${anecdote.content}'`)
     setInterval(() => {
@@ -26,16 +23,16 @@ const AnecdoteList = () => {
     }, 5000)
   }
 
-  const sortedAnecdotes = anecdotes.toSorted((a, b) => {
-    const result = a.votes - b.votes
-    if (result < 0) return 1
-    else if (result > 0) return -1
-    return 0
-  })
+  // const sortedAnecdotes = anecdotes.toSorted((a, b) => {
+  //   const result = a.votes - b.votes
+  //   if (result < 0) return 1
+  //   else if (result > 0) return -1
+  //   return 0
+  // })
 
   return (
     <>
-      {sortedAnecdotes.map((anecdote) => (
+      {anecdotes.map((anecdote) => (
         <div key={anecdote.id}>
           <div>{anecdote.content}</div>
           <div>

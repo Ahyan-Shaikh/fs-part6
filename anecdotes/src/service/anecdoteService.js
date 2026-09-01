@@ -15,23 +15,25 @@ const createNew = async (newAnecdote) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newAnecdote)
   })
-  
+
   if (!response.ok) {
     throw new Error("could not save the anecdote")
   }
   return await response.json()
 }
 
-const updateVote = async (updatedAnecdote, id) => {
+const updateVote = async (newAnecdote, id) => {
   const response = await fetch(`${baseUrl}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedAnecdote)
+    body: JSON.stringify(newAnecdote)
   })
 
   if (!response.ok) {
     throw new Error("could not update the anecdote")
   }
+
+  console.log(await response.json())
   return await response.json()
 }
 
@@ -43,4 +45,4 @@ const removeAnecdote = async (id) => {
   return await response.json()
 }
 
-export { getAll, createNew, updateVote, removeAnecdote }
+export default { getAll, createNew, updateVote, removeAnecdote }
