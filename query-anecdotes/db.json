@@ -3,27 +3,47 @@
     {
       "id": "1536cbd2-f583-4b3c-ad7f-248ea8a43f92",
       "content": "Make it work, then make it fast",
-      "votes": 0
+      "votes": 13
     },
     {
       "id": "072b0364-33e1-44bd-9c48-1ec331fa999b",
       "content": "There are two hard things in computer science",
-      "votes": 3
+      "votes": 8
     },
     {
       "id": "08bf5830-88a6-4a6b-ac30-74c22967995d",
       "content": "Untested code is broken code",
-      "votes": 4
+      "votes": 8
     },
     {
       "id": "ec4e10e9-3bdd-4b15-88b4-f84ea846eae6",
       "content": "Simplicity is the ultimate sophistication",
-      "votes": 5
+      "votes": 9
     },
     {
       "id": "ed4243a2-67a8-4961-8782-9d9d60ab41f9",
       "content": "Real artists ship code",
-      "votes": 7
+      "votes": 8
+    },
+    {
+      "content": "Why do C programmers wear glasses? Because they can't C#",
+      "votes": 1,
+      "id": "0ad0a198-8aab-4ce9-bbc1-a7f261144c67"
+    },
+    {
+      "content": "How did pirates communicate before the internet? They used peer-to-peer networking.",
+      "votes": 0,
+      "id": "da8367e1-ee4a-47f7-9779-7ae3448c95c2"
+    },
+    {
+      "content": "There are 10 types of people in the world: those who understand binary, and those who don't.",
+      "votes": 1,
+      "id": "a8a84e78-5d05-463c-8527-6e0d49cdb69b"
+    },
+    {
+      "content": "Three C programmers walk into a bar, but they can't find the counter because they forgot to allocate memory for it.",
+      "votes": 0,
+      "id": "b68f58a7-0b96-4753-8d0f-bf73ff377258"
     }
   ]
 }
