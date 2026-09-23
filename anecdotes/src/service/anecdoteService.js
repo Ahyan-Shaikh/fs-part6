@@ -13,7 +13,7 @@ const createNew = async (newAnecdote) => {
   const response = await fetch(baseUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newAnecdote)
+    body: JSON.stringify(newAnecdote),
   })
 
   if (!response.ok) {
@@ -26,21 +26,21 @@ const updateVote = async (newAnecdote, id) => {
   const response = await fetch(`${baseUrl}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newAnecdote)
+    body: JSON.stringify(newAnecdote),
   })
 
   if (!response.ok) {
     throw new Error("could not update the anecdote")
   }
-
-  console.log(await response.json())
   return await response.json()
 }
 
 const removeAnecdote = async (id) => {
   const response = await fetch(`${baseUrl}/${id}`, { method: "DELETE" })
   if (!response.ok) {
-    throw new Error("could not delete the object, please check whether it exists")
+    throw new Error(
+      "could not delete the object, please check whether it exists",
+    )
   }
   return await response.json()
 }

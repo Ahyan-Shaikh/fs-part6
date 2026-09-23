@@ -1,8 +1,8 @@
-import { useContext } from 'react'
-import AnecdoteForm from './components/AnecdoteForm'
-import Notification from './components/Notification'
-import { useAnecdotes } from './components/hooks/useAnecdotes'
-import NotificationContext, { NotificationContextProvider } from './components/NotificationContext'
+import { useContext } from "react"
+import AnecdoteForm from "./components/AnecdoteForm"
+import Notification from "./components/Notification"
+import { useAnecdotes } from "./components/hooks/useAnecdotes"
+import NotificationContext from "./components/NotificationContext"
 
 const App = () => {
   const { anecdotes, updateVote, isPending, isError } = useAnecdotes()
@@ -16,7 +16,7 @@ const App = () => {
   if (isPending) {
     return <div>Loading data...</div>
   }
-  
+
   if (isError) {
     return <div>anecdote service not available due to problems in server</div>
   }

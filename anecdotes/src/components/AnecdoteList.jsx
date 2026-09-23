@@ -6,8 +6,9 @@ const AnecdoteList = () => {
   const setNotify = useSetNotify()
 
   const vote = async (id) => {
-    const anecdote = anecdotes.find(a => a.id === id)
-    await incVote(id)
+    const anecdote = anecdotes.find((a) => a.id === id)
+    console.log("Anecdote....", anecdote)
+    await incVote(anecdote)
 
     setNotify(`you voted '${anecdote.content}'`)
     setInterval(() => {
@@ -17,7 +18,7 @@ const AnecdoteList = () => {
 
   const handleRemove = async (anecdote) => {
     await remove(anecdote.id)
-    setNotify('You can only delete anecdote with zero votes')
+    setNotify("You can only delete anecdote with zero votes")
     setInterval(() => {
       setNotify(null)
     }, 5000)
@@ -38,7 +39,9 @@ const AnecdoteList = () => {
           <div>
             has {anecdote.votes}
             <button onClick={() => vote(anecdote.id)}>vote</button>
-            { anecdote.votes > 0 ? null: <button onClick={() => handleRemove(anecdote)}>delete</button>}
+            {anecdote.votes > 0 ? null : (
+              <button onClick={() => handleRemove(anecdote)}>delete</button>
+            )}
           </div>
         </div>
       ))}
